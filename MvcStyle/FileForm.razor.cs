@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.AspNetCore.Routing;
 
 
-namespace MvcStyleForRazor.FileForm;
+namespace MvcStyle;
 
 public class FileFormComponent: ComponentBase
 {

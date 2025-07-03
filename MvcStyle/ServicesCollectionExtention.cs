@@ -1,6 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 
-namespace MvcStyleForRazor.ServiceCollection;
+namespace MvcStyle.ServiceCollection;
 
 public static class ServicesCollectionExtention
 {

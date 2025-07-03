@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Antiforgery;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Http;
 
-namespace MvcStyleForRazor;
+namespace MvcStyle;
 
 public class AntiForgeryServices: IAntiForgeryServices
 {
