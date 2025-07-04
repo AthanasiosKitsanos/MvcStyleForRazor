@@ -5,27 +5,22 @@ using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.AspNetCore.Routing;
 
 
-namespace MvcStyle;
+namespace MvcStyle.Components;
 
-public class FileFormComponent: ComponentBase
+public class NavComponent : ComponentBase
 {
     [Inject] private IHttpContextAccessor Accessor { get; set; } = default!;
     [Inject] private IUrlHelperFactory UrlHelper { get; set; } = default!;
-    [Inject] private AntiForgeryServices AntiforgeryService { get; set; } = default!;
 
-    [Parameter] public string? action { get; set; }
-    [Parameter] public string? controller { get; set; }
     [Parameter] public int? routeId { get; set; }
-    [Parameter] public string? method { get; set; }
+    [Parameter] public string action { get; set; } = default!;
+    [Parameter] public string controller { get; set; } = default!;
     [Parameter] public RenderFragment? ChildContent { get; set; }
 
-    protected string? ActionUrl { get; set; }
-    protected MarkupString AntiForgeryMarkup { get; set; }
+    protected string ActionUrl { get; set; } = string.Empty;
 
-    protected override async Task OnInitializedAsync()
+    protected override Task OnInitializedAsync()
     {
-        AntiForgeryMarkup = await AntiforgeryService.GenerateHiddenMarkupInput();
-
         Dictionary<string, string>? RouteValue = null;
 
         if (routeId.HasValue)
@@ -50,5 +45,7 @@ public class FileFormComponent: ComponentBase
             IUrlHelper url = UrlHelper.GetUrlHelper(actionContext);
             ActionUrl = url.Action(action, controller, RouteValue);
         }
+
+        return Task.CompletedTask;
     }
 }

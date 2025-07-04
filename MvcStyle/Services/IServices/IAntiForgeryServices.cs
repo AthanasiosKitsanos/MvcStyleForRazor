@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Components;
 
-namespace MvcStyle;
+namespace MvcStyle.Services;
 
 public interface IAntiForgeryServices
 {
