@@ -7,15 +7,15 @@ using MvcStyle.Services;
 
 namespace MvcStyle.Components;
 
-public partial class FileForm: ComponentBase
+public partial class FileForm
 {
     [Inject] private IHttpContextAccessor Accessor { get; set; } = default!;
     [Inject] private IUrlHelperFactory UrlHelper { get; set; } = default!;
-    [Inject] private AntiForgeryServices AntiforgeryService { get; set; } = default!;
+    [Inject] private IAntiForgeryServices AntiforgeryService { get; set; } = default!;
 
     [Parameter] public string? action { get; set; }
     [Parameter] public string? controller { get; set; }
-    [Parameter] public int? routeId { get; set; }
+    [Parameter] public int? routeId { get; set; } = null;
     [Parameter] public string? method { get; set; }
     [Parameter] public RenderFragment? ChildContent { get; set; }
 

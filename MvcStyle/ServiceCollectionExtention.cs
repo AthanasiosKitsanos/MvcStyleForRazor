@@ -1,7 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
 using MvcStyle.Services;
-using MvcStyle.Services.IServices;
-using MvcStyle.Services.Services;
 
 namespace MvcStyle.ServiceCollection;
 

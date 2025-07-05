@@ -4,9 +4,11 @@
     <TargetFramework>net9.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>MvcStyle.snk</AssemblyOriginatorKeyFile>
 
     <PackageId>MvcStyle</PackageId>
-    <Version>2.1.2</Version>
+    <Version>2.1.5</Version>
     <Authors>Thanos</Authors>
     <Description>Reusable MVC-style Razor Form Components with AntiForgery support and custom navigation link</Description>
     <PackageTags>mvc; razor; form; antiforgery</PackageTags>

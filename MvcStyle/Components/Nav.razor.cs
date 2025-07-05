@@ -10,7 +10,7 @@ public partial class Nav: ComponentBase
     [Inject] private IHttpContextAccessor Accessor { get; set; } = default!;
     [Inject] private IUrlHelperFactory UrlHelper { get; set; } = default!;
 
-    [Parameter] public int? routeId { get; set; }
+    [Parameter] public int? routeId { get; set; } = null;
     [Parameter] public string action { get; set; } = default!;
     [Parameter] public string controller { get; set; } = default!;
     [Parameter] public RenderFragment? ChildContent { get; set; }

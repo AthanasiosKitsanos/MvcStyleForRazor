@@ -1,13 +1,11 @@
-using System;
 using System.Net.Http.Json;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.AspNetCore.Routing;
-using MvcStyle.Services.IServices;
 
-namespace MvcStyle.Services.Services;
+namespace MvcStyle.Services;
 
 public class ControllerServices : IControllerServices
 {
@@ -24,7 +22,31 @@ public class ControllerServices : IControllerServices
         _navigation = navigation;
     }
 
-    public async Task<TModel> HttpGetJsonAsync<TModel>(string action, string controller, int? id) where TModel : class
+    public async Task<TModel> HttpGetJsonAsync<TModel>(string action, string controller, int? id = null) where TModel : class
+    {
+        string actionUrl = CreateUrl(action, controller, id);
+
+        TModel model = await _httpClient.GetFromJsonAsync<TModel>(CombineUrls(_navigation.BaseUri, actionUrl)) ?? null!;
+
+        return model;
+    }
+
+    private string CombineUrls(string baseUri, string relativeUrl)
+    {
+        if (string.IsNullOrWhiteSpace(baseUri))
+        {
+            return relativeUrl;
+        }
+
+        if (string.IsNullOrWhiteSpace(relativeUrl))
+        {
+            return baseUri;
+        }
+
+        return $"{baseUri.TrimEnd('/')}/{relativeUrl.TrimStart('/')}";
+    }
+
+    private string CreateUrl(string action, string controller, int? id)
     {
         Dictionary<string, string>? routeValue = null;
 
@@ -53,29 +75,6 @@ public class ControllerServices : IControllerServices
             actionUrl = url.Action(action, controller, routeValue);
         }
 
-        // string fullUrl = CombineUrls(_navigation.BaseUri, actionUrl);
-
-        //string fullUrl = actionUrl.StartsWith("http") ? actionUrl : $"{_navigation.BaseUri.TrimEnd('/')}{actionUrl}";
-
-        //TModel model = await _httpClient.GetFromJsonAsync<TModel>($"{_navigation.BaseUri.TrimEnd('/')}{actionUrl}") ?? null!;
-
-        TModel model = await _httpClient.GetFromJsonAsync<TModel>(CombineUrls(_navigation.BaseUri, actionUrl)) ?? null!;
-
-        return model;
-    }
-
-    private string CombineUrls(string baseUri, string relativeUrl)
-    {
-        if (string.IsNullOrWhiteSpace(baseUri))
-        {
-            return relativeUrl;
-        }
-
-        if (string.IsNullOrWhiteSpace(relativeUrl))
-        {
-            return baseUri;
-        }
-
-        return $"{baseUri.TrimEnd('/')}/{relativeUrl.TrimStart('/')}";
+        return actionUrl;
     }
 }
