@@ -4,10 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.AspNetCore.Routing;
 
-
 namespace MvcStyle.Components;
-
-public class NavComponent : ComponentBase
+public partial class Nav: ComponentBase
 {
     [Inject] private IHttpContextAccessor Accessor { get; set; } = default!;
     [Inject] private IUrlHelperFactory UrlHelper { get; set; } = default!;

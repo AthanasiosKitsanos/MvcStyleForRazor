@@ -5,10 +5,9 @@ using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.AspNetCore.Routing;
 using MvcStyle.Services;
 
-
 namespace MvcStyle.Components;
 
-public class FileFormComponent: ComponentBase
+public partial class FileForm: ComponentBase
 {
     [Inject] private IHttpContextAccessor Accessor { get; set; } = default!;
     [Inject] private IUrlHelperFactory UrlHelper { get; set; } = default!;

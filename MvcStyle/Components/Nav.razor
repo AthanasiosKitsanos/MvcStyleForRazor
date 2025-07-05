@@ -1,7 +1,14 @@
-﻿@using MvcStyle.Components
+﻿@namespace MvcStyle.Components
 
-@inherits NavComponent
 
 <a href="@ActionUrl">
     @ChildContent
 </a>
+
+@code
+{
+    void DebugNamespace()
+    {
+        System.Console.WriteLine(GetType().FullName);
+    }
+}
