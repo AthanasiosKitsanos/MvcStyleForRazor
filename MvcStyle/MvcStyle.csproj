@@ -6,7 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
 
     <PackageId>MvcStyle</PackageId>
-    <Version>2.0.1</Version>
+    <Version>2.1.1</Version>
     <Authors>Thanos</Authors>
     <Description>Reusable MVC-style Razor Form Components with AntiForgery support and custom navigation link</Description>
     <PackageTags>mvc; razor; form; antiforgery</PackageTags>
